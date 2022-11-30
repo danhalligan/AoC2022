@@ -1,0 +1,6 @@
+inputs/
+.DS_Store
+dist/
+htmlcov/
+*/__pycache__/
+.session.txt
