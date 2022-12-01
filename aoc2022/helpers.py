@@ -6,16 +6,25 @@ from datetime import date
 
 
 def input_str(file):
+    """Returns input file as a str"""
     return open(file, "r").read()
 
 
 def input_lines(file):
+    """Returns lines from input file"""
     return input_str(file).splitlines()
 
 
 def input_ints(file):
+    """Returns list of ints from input file"""
     txt = input_str(file).rstrip()
     return list(map(int, re.split(r"[\n,]", txt)))
+
+
+def input_blocks(file):
+    """Returns lines of input split by empty lines from input file"""
+    blocks = open(file).read().split("\n\n")
+    return [block.split() for block in blocks]
 
 
 def get_input(day=date.today().day):

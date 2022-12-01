@@ -1,4 +1,4 @@
-from aoc2021.helpers import *
+from aoc2022.helpers import *
 
 
 def part1(file):

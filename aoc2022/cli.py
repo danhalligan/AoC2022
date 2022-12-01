@@ -16,7 +16,10 @@ def solve(files: List[Path]):
             day = int(re.findall(r"\d+", path.name)[0])
             print(f"--- Day {day} ---")
             module = importlib.import_module(f"aoc2022.day{day:02d}")
-            print("Part 1:", getattr(module, "part1")(path))
+            try:
+                print("Part 1:", getattr(module, "part1")(path))
+            except AttributeError:
+                print("No part 1")
             try:
                 print("Part 2:", getattr(module, "part2")(path))
             except AttributeError:

@@ -1,9 +1,13 @@
-from aoc2021.helpers import *
+from aoc2022.helpers import *
+
+
+def totals(file):
+    return [sum(map(int, elf)) for elf in input_blocks(file)]
 
 
 def part1(file):
-    return None
+    return max(totals(file))
 
 
 def part2(file):
-    return None
+    return sum(sorted(totals(file))[-3:])
