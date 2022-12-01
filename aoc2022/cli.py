@@ -1,9 +1,11 @@
 import typer
 import re
 import importlib
+import os
+import requests
 from pathlib import Path
 from typing import List
-from aoc2022.helpers import get_input
+from datetime import date
 
 app = typer.Typer()
 
@@ -28,8 +30,18 @@ def solve(files: List[Path]):
 
 
 @app.command("input")
-def input():
-    get_input()
+def input(day: int = date.today().day):
+    """Download AoC input file (for today by default)"""
+    print(f"Downloading https://adventofcode.com/2022/day/{day}/input")
+    if "AOC_SESSION" not in os.environ and os.path.exists(".session.txt"):
+        os.environ["AOC_SESSION"] = open(".session.txt").read().rstrip()
+    res = requests.get(
+        f"https://adventofcode.com/2022/day/{day}/input",
+        cookies={"session": os.environ.get("AOC_SESSION")},
+    )
+    with open("inputs/day" + f"{day:02d}" + ".txt", "w") as f:
+        f.write(res.text)
+    return "inputs/day" + f"{day:02d}" + ".txt"
 
 
 def main():

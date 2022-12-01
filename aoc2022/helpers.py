@@ -1,8 +1,10 @@
 # Functions to help read inputs
 import re
-import os
-import requests
-from datetime import date
+
+
+def ints(x):
+    """Coerce a list into a list of ints"""
+    return [int(y) for y in x]
 
 
 def input_str(file):
@@ -16,25 +18,12 @@ def input_lines(file):
 
 
 def input_ints(file):
-    """Returns list of ints from input file"""
+    """Returns list of ints from input file (split by new line or comma)"""
     txt = input_str(file).rstrip()
-    return list(map(int, re.split(r"[\n,]", txt)))
+    return ints(re.split(r"[\n,]", txt))
 
 
-def input_blocks(file):
+def input_blocks(file, sep="\n\n"):
     """Returns lines of input split by empty lines from input file"""
-    blocks = open(file).read().split("\n\n")
+    blocks = open(file).read().split(sep)
     return [block.split() for block in blocks]
-
-
-def get_input(day=date.today().day):
-    print(f"Downloading https://adventofcode.com/2022/day/{day}/input")
-    if "AOC_SESSION" not in os.environ and os.path.exists(".session.txt"):
-        os.environ["AOC_SESSION"] = open(".session.txt").read().rstrip()
-    res = requests.get(
-        f"https://adventofcode.com/2022/day/{day}/input",
-        cookies={"session": os.environ.get("AOC_SESSION")},
-    )
-    with open("inputs/day" + f"{day:02d}" + ".txt", "w") as f:
-        f.write(res.text)
-    return "inputs/day" + f"{day:02d}" + ".txt"

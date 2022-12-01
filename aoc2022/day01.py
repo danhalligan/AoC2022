@@ -1,8 +1,8 @@
-from aoc2022.helpers import input_blocks
+from aoc2022.helpers import input_blocks, ints
 
 
 def totals(file):
-    return [sum(map(int, elf)) for elf in input_blocks(file)]
+    return [sum(ints(elf)) for elf in input_blocks(file)]
 
 
 def part1(file):
