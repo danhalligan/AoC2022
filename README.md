@@ -1,5 +1,9 @@
 # AoC2022
 
+![CI workflow](https://github.com/danhalligan/AoC2022/actions/workflows/ci.yaml/badge.svg)
+![License](https://img.shields.io/github/license/danhalligan/AoC2022)
+![Code style](https://img.shields.io/badge/code%20style-black-000000.svg)
+
 `AoC2022` is a python package implementing solutions python solutions for the
 [Advent of Code 2022] problems.
 
