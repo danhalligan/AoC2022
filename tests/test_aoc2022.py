@@ -1,8 +1,8 @@
 import importlib
 import pytest
-from aoc2022.helpers import *
 
 solutions = [(1, [24000, 45000])]
+
 
 # Test each day by importing the module and running part1 and part2
 @pytest.mark.parametrize("day,expected", solutions)

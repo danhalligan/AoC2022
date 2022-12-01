@@ -29,7 +29,7 @@ def input_blocks(file):
 
 def get_input(day=date.today().day):
     print(f"Downloading https://adventofcode.com/2022/day/{day}/input")
-    if not "AOC_SESSION" in os.environ and os.path.exists(".session.txt"):
+    if "AOC_SESSION" not in os.environ and os.path.exists(".session.txt"):
         os.environ["AOC_SESSION"] = open(".session.txt").read().rstrip()
     res = requests.get(
         f"https://adventofcode.com/2022/day/{day}/input",

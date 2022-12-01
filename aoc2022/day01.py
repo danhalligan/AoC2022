@@ -1,4 +1,4 @@
-from aoc2022.helpers import *
+from aoc2022.helpers import input_blocks
 
 
 def totals(file):
