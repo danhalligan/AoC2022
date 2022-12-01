@@ -9,17 +9,23 @@
 
 ## Example
 
+To download input data for today's day run:
+
+``` bash
+poetry run aoc2022 input
+```
+
 To solve a specific day, you can use `solve`, passing in the input file for
 the current day using poetry.
 
 ``` bash
-poetry run aoc2022 inputs/day01.txt
+poetry run aoc2022 solve inputs/day01.txt
 ```
 
 Or pass in multiple days to solve multiple inputs.
 
 ``` bash
-poetry run aoc2022 inputs/*
+poetry run aoc2022 solve inputs/*
 ```
 
 You can automatically download the input for a given day by setting your
