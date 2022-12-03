@@ -17,7 +17,7 @@ def part1(file):
 
 
 def part2(file):
-    score2 = {
+    score = {
         "A X": 3 + 0,
         "A Y": 1 + 3,
         "A Z": 2 + 6,
@@ -28,4 +28,4 @@ def part2(file):
         "C Y": 3 + 3,
         "C Z": 1 + 6,
     }
-    return sum([score2[x] for x in input_lines(file)])
+    return sum([score[x] for x in input_lines(file)])
