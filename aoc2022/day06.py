@@ -4,8 +4,7 @@ from aoc2022.helpers import input_str
 def marker(dat, size):
     for i in range(len(dat) - size + 1):
         if len(set(dat[i : i + size])) == size:
-            break
-    return i + size
+            return i + size
 
 
 def part1(file):
