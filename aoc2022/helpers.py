@@ -9,7 +9,7 @@ def ints(x):
 
 def input_str(file):
     """Returns input file as a str"""
-    return open(file, "r").read()
+    return open(file, "r").read().rstrip()
 
 
 def input_lines(file):
@@ -19,7 +19,7 @@ def input_lines(file):
 
 def input_ints(file):
     """Returns list of ints from input file (split by new line or comma)"""
-    txt = input_str(file).rstrip()
+    txt = input_str(file)
     return ints(re.split(r"[\n,]", txt))
 
 

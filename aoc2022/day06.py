@@ -1,5 +1,4 @@
-def data(file):
-    return open(file).read().rstrip()
+from aoc2022.helpers import input_str
 
 
 def marker(dat, size):
@@ -10,8 +9,8 @@ def marker(dat, size):
 
 
 def part1(file):
-    return marker(data(file), 4)
+    return marker(input_str(file), 4)
 
 
 def part2(file):
-    return marker(data(file), 14)
+    return marker(input_str(file), 14)

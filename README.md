@@ -9,12 +9,6 @@
 
 ## Example
 
-To download input data for today's day run:
-
-``` bash
-poetry run aoc2022 input
-```
-
 To solve a specific day, you can use `solve`, passing in the input file for
 the current day using poetry.
 
@@ -36,11 +30,10 @@ in the working directory).
 export AOC_SESSION=[your session]
 ```
 
-Then using the helper function, e.g. for today's input:
+Then using the input command to get today's input:
 
 ```python
-> from aoc2022.helpers import *
-> get_input()
+poetry run aoc2022 input
 ```
 
 [Advent of Code 2022]: https://adventofcode.com/2022
