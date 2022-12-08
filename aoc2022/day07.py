@@ -8,7 +8,6 @@ def path(tree):
 def parse(file):
     dat = input_lines(file)
     files = {"/": {"f": {}, "d": []}}
-    dirs = []
     i = 1
     tree = ["/"]
     while i < len(dat):
@@ -28,9 +27,8 @@ def parse(file):
         else:
             tree += [dat[i].split()[2]]
             files[path(tree)] = {"f": {}, "d": []}
-            dirs += [path(tree)]
             i += 1
-    return files, dirs
+    return files
 
 
 def dirsize(files, name):
@@ -40,13 +38,13 @@ def dirsize(files, name):
 
 
 def part1(file):
-    files, dirs = parse(file)
-    sizes = {n: dirsize(files, n) for n in ["/"] + dirs}
+    files = parse(file)
+    sizes = {n: dirsize(files, n) for n in files.keys()}
     return sum(s for x, s in sizes.items() if s <= 100000)
 
 
 def part2(file):
-    files, dirs = parse(file)
-    sizes = {n: dirsize(files, n) for n in ["/"] + dirs}
+    files = parse(file)
+    sizes = {n: dirsize(files, n) for n in files.keys()}
     to_free = 30000000 - (70000000 - sizes["/"])
     return min(s for x, s in sizes.items() if s >= to_free)
