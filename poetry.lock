@@ -1,4 +1,15 @@
 [[package]]
+name = "advent-of-code-ocr"
+version = "1.0.0"
+description = "Convert Advent of Code ASCII art"
+category = "main"
+optional = false
+python-versions = "~=3.7"
+
+[package.extras]
+test = ["numpy", "pytest"]
+
+[[package]]
 name = "atomicwrites"
 version = "1.4.1"
 description = "Atomic file writes."
@@ -424,9 +435,10 @@ testing = ["coverage (>=6.2)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<3.11"
-content-hash = "779e1bd9fbc0844ac7fe104bd75082a2887dc5030432f2f5029699a0c94cccf9"
+content-hash = "5ceff6a090289bae44c35efc396b804bab3c0c468991f2946af1d9d6d1fd41d1"
 
 [metadata.files]
+advent-of-code-ocr = []
 atomicwrites = []
 attrs = []
 black = []
