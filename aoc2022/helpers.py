@@ -2,6 +2,11 @@
 import re
 
 
+def getint(x):
+    """Grab a single int from a string"""
+    return int(re.search("-*\\d+", x).group())
+
+
 def ints(x):
     """Coerce a list into a list of ints"""
     return [int(y) for y in x]
