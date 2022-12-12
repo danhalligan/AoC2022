@@ -33,7 +33,7 @@ def neighbours(pos, grid):
     return [x for x in nb if grid[x] <= grid[pos] + 1]
 
 
-def dij(start, grid, nb):
+def find_path(start, grid, nb):
     dist = defaultdict(lambda: inf)
     queue = [(0, start)]
     while queue:
@@ -47,7 +47,7 @@ def dij(start, grid, nb):
 
 def part1(file):
     start, end, grid = parse(file)
-    return dij(start, grid, neighbours)[end]
+    return find_path(start, grid, neighbours)[end]
 
 
 def neighbours2(pos, grid):
@@ -58,6 +58,6 @@ def neighbours2(pos, grid):
 
 
 def part2(file):
-    start, end, grid = parse(file)
-    dist = dij(end, grid, neighbours2)
+    _, end, grid = parse(file)
+    dist = find_path(end, grid, neighbours2)
     return min(dist[pos] for pos, val in grid.items() if val == 0)
