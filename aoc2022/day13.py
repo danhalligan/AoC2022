@@ -1,32 +1,30 @@
-from copy import copy
 from functools import cmp_to_key
 
 
+def enlist(x):
+    if not isinstance(x, list):
+        return [x]
+    else:
+        return x
+
+
 def ordered(left, right):
-    left, right = copy(left), copy(right)
-    while left or right:
-        try:
-            l2 = left.pop(0)
-        except IndexError:
+    i = 0
+    while True:
+        if i >= len(left):
             return True
-        try:
-            r2 = right.pop(0)
-        except IndexError:
+        if i >= len(right):
             return False
-        if isinstance(l2, int) and isinstance(r2, int):
-            if l2 < r2:
+        if isinstance(left[i], int) and isinstance(right[i], int):
+            if left[i] < right[i]:
                 return True
-            if l2 > r2:
+            if left[i] > right[i]:
                 return False
-            continue
-        elif isinstance(l2, int):
-            l2 = [l2]
-        elif isinstance(r2, int):
-            r2 = [r2]
-        if isinstance(l2, list) and isinstance(r2, list):
-            v = ordered(l2, r2)
-            if v is not None:
-                return v
+        else:
+            res = ordered(enlist(left[i]), enlist(right[i]))
+            if res is not None:
+                return res
+        i += 1
 
 
 def data(file):
