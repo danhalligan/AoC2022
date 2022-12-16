@@ -76,13 +76,11 @@ def drop_and_roll2(cave, grain, lim):
 def part2(file):
     dat = open(file).read().splitlines()
     cave = build_cave(dat)
-    lim = maxcave(cave) + 1
     count = 0
     while True:
-        pos = drop_and_roll2(cave, [500, 0], lim)
+        pos = drop_and_roll2(cave, [500, 0], maxcave(cave) + 1)
         count += 1
         if pos == (500, 0):
             break
         cave[pos] = 2
-
     return count
