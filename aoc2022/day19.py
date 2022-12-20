@@ -1,6 +1,9 @@
 from aoc2022.helpers import input_lines, ints
-import re
 from heapq import heappush, heappop
+from multiprocessing import Pool
+from functools import partial
+
+import re
 import math
 
 
@@ -63,7 +66,7 @@ def mine(costs, maxtime=24):
     best = 0
     seen = set()
     while q:
-        sc, (resource, robots, time) = heappop(q)
+        resource, robots, time = heappop(q)[1]
         state = tuple(list(resource) + list(robots) + [time])
         if state in seen:
             continue
@@ -86,13 +89,15 @@ def mine(costs, maxtime=24):
 
 def part1(file):
     bests = []
-    for costs in data(file):
-        bests.append(mine(costs))
+    costs = list(data(file))
+    with Pool(8) as p:
+        bests = p.map(mine, costs)
     return sum([x * (i + 1) for i, x in enumerate(bests)])
 
 
 def part2(file):
     bests = []
-    for costs in list(data(file))[:3]:
-        bests.append(mine(costs, maxtime=32))
+    costs = list(data(file))[:3]
+    with Pool(8) as p:
+        bests = p.map(partial(mine, maxtime=32), costs)
     return math.prod(bests)
