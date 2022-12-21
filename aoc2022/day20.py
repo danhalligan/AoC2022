@@ -15,8 +15,7 @@ def mix(x, d):
     for i in x:
         d.rotate(-d.index(i))
         o = d.popleft()
-        d.rotate(-o[1])
-        d.insert(0, o)
+        d.insert(o[1] % len(d), o)
 
 
 def part1(file):

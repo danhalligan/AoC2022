@@ -41,7 +41,7 @@ def testn(n, g, k):
     return solve(k, g)
 
 
-# binary search of testn
+# binary search
 def part2(file):
     k, g = data(file)
     g["root"][1] = "-"
