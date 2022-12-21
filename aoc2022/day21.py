@@ -1,8 +1,12 @@
 from aoc2022.helpers import input_lines
-from operator import add, sub, mul, floordiv, eq
+from operator import add, sub, mul, truediv, eq
 from copy import copy
 
-op = {"+": add, "-": sub, "*": mul, "/": floordiv, "=": eq}
+op = {"+": add, "-": sub, "*": mul, "/": truediv, "=": eq}
+
+
+def sign(x):
+    return -1 if x < 0 else (1 if x > 0 else 0)
 
 
 def data(file):
@@ -30,7 +34,7 @@ def solve(k, g):
 
 def part1(file):
     k, g = data(file)
-    return solve(k, g)
+    return int(solve(k, g))
 
 
 # Set humn to n and evaluate, returning difference of inputs for root
@@ -38,21 +42,24 @@ def testn(n, g, k):
     g = copy(g)
     k = copy(k)
     k["humn"] = n
+    g["root"][1] = "-"
     return solve(k, g)
 
 
 # binary search
 def part2(file):
     k, g = data(file)
-    g["root"][1] = "-"
     low = 1
-    high = 10000000000000
+    high = 100000000000000
+    res = {}
+    res[low] = testn(low, g, k)
+    res[high] = testn(high, g, k)
     while True:
         mid = (low + high) // 2
-        res = testn(mid, g, k)
-        if res == 0 or high == low + 1:
+        res[mid] = testn(mid, g, k)
+        if res[mid] == 0.0 or high == low + 1:
             break
-        elif res > 0:
+        elif sign(res[mid]) == sign(res[low]):
             low = mid
         else:
             high = mid
